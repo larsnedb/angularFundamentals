@@ -18,9 +18,7 @@ import {Component} from '@angular/core';
       }
     }
 
-    {
-
-    }
+    li > a.active { color: #F97924}
   `]
 })
 
