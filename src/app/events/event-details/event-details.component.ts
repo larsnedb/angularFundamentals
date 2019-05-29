@@ -1,6 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnInit} from '@angular/core';
 import {EventService, IEvent, ISession} from '../shared';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute} from '@angular/router';
 
 @Component({
   templateUrl: './event-details.component.html',
@@ -20,12 +20,13 @@ import {ActivatedRoute, Router} from '@angular/router';
   `]
 })
 
-export class EventDetailsComponent implements OnInit {
+export class EventDetailsComponent implements OnInit, OnChanges {
   event: IEvent;
   addMode: boolean;
+  filterBy = 'all';
+  sortBy = 'votes';
 
-  constructor(private eventService: EventService, private route: ActivatedRoute,
-              private router: Router) {
+  constructor(private eventService: EventService, private route: ActivatedRoute) {
 
   }
 
@@ -49,5 +50,8 @@ export class EventDetailsComponent implements OnInit {
 
   cancelAddSession() {
     this.addMode = false;
+  }
+
+  ngOnChanges() {
   }
 }
