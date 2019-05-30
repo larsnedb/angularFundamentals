@@ -15,8 +15,7 @@ export class SessionListComponent implements OnChanges {
   @Input() sortBy: string;
   visibleSessions: ISession[] = [];
 
-  constructor(private auth: AuthService,
-              private voterService: VoterService) { }
+  constructor(private auth: AuthService, private voterService: VoterService) { }
 
   ngOnChanges() {
     if (this.sessions) {
@@ -51,6 +50,7 @@ export class SessionListComponent implements OnChanges {
       });
     }
   }
+
 }
 
 function sortByNameAsc(s1: ISession, s2: ISession) {
