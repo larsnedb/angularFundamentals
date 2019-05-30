@@ -37,4 +37,8 @@ export class LoginComponent {
   cancel() {
     this.router.navigate(['events']);
   }
+
+  logout() {
+
+  }
 }

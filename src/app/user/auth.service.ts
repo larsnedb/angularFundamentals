@@ -47,4 +47,11 @@ export class AuthService {
       }))
       .subscribe();
   }
+
+  logout() {
+    this.currentUser = undefined;
+
+    const options = {headers: {'Content-Type': 'application/json'}};
+    return this.http.post('/api/logout', {}, options);
+  }
 }
