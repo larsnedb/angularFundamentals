@@ -37,7 +37,6 @@ export class NavbarComponent {
   searchSessions(searchTerm) {
     this.eventService.searchSessions(searchTerm).subscribe(sessions => {
       this.foundSessions = sessions;
-      }
-    );
+      });
   }
 }
