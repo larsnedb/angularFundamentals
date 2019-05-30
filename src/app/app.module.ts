@@ -16,7 +16,7 @@ import {
 
 import {EventsAppComponent} from './events-app.component';
 import {NavbarComponent} from './nav/navbar.component';
-import {JQ_TOKEN, TOASTR_TOKEN, Toastr, CollapsibleWellComponent} from './common';
+import {JQ_TOKEN, TOASTR_TOKEN, Toastr, CollapsibleWellComponent, SimpleModalComponent} from './common';
 import {RouterModule} from '@angular/router';
 import {appRoutes} from './routes';
 import {Error404Component} from './errors/404.component';
@@ -44,11 +44,13 @@ const jQuery = window['$'];
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleWellComponent,
-    DurationPipe
+    DurationPipe,
+    SimpleModalComponent
   ],
   providers: [
     EventService,
     { provide: TOASTR_TOKEN, useValue: toastr},
+    { provide: JQ_TOKEN, useValue: jQuery},
     EventRouteActivator,
     AuthService,
     EventListResolver,
