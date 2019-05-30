@@ -1,6 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HttpClientModule} from '@angular/common/http';
 
 import {
   EventsListComponent,
@@ -8,13 +8,13 @@ import {
   EventService,
   EventListResolver,
   EventDetailsComponent,
-  EventRouteActivator,
   CreateEventComponent,
   CreateSessionComponent,
   SessionListComponent,
   UpvoteComponent,
   VoterService,
   LocationValidator,
+  EventResolver,
   DurationPipe
 } from './events';
 
@@ -64,8 +64,8 @@ const jQuery = window['$'];
     EventService,
     { provide: TOASTR_TOKEN, useValue: toastr},
     { provide: JQ_TOKEN, useValue: jQuery},
-    EventRouteActivator,
     AuthService,
+    EventResolver,
     EventListResolver,
     VoterService,
     {provide: 'canDeactivateCreateEvent', useValue: checkDirtyState}],
