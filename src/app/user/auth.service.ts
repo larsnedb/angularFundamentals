@@ -8,17 +8,18 @@ import {catchError, tap} from 'rxjs/operators';
 export class AuthService {
   currentUser: IUser;
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+  }
 
   loginUser(userName: string, password: string) {
     const loginInfo = {username: userName, password: password};
     const options = {headers: {'Content-Type': 'application/json'}};
 
-    return  this.http.post('/api/login', loginInfo, options)
+    return this.http.post('/api/login', loginInfo, options)
       .pipe(tap(data => {
         this.currentUser = <IUser>data['user'];
       }))
-      .pipe(catchError(err => {
+      .pipe(catchError(() => {
         return of(false);
       }));
   }
@@ -30,5 +31,20 @@ export class AuthService {
   updateCurrentUser(firstName: string, lastName: string) {
     this.currentUser.firstName = firstName;
     this.currentUser.lastName = lastName;
+
+    const options = {headers: {'Content-Type': 'application/json'}};
+    const url = `/api/users/${this.currentUser.id}`;
+
+    return this.http.put(url, this.currentUser, options);
+  }
+
+  checkAuthenticationStatus() {
+    this.http.get('/api/currentIdentity')
+      .pipe(tap(data => {
+        if (data instanceof Object) {
+          this.currentUser = <IUser>data;
+        }
+      }))
+      .subscribe();
   }
 }
