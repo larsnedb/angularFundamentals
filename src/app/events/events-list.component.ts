@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {EventService, IEvent} from './shared';
 import {ActivatedRoute} from '@angular/router';
 
-declare let toastr;
-
 @Component({
   template: `
     <div><h1>Upcoming Angular Events</h1>
